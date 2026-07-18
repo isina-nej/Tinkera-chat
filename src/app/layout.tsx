@@ -4,23 +4,36 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "../globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chat.tinkera.org"),
   title: {
-    default: "اویا — یک‌جا برای همه گفتگوها",
-    template: "%s | Ovea",
+    default: "Tinkera Chat",
+    template: "%s | Tinkera Chat",
   },
   description:
-    "اویا یک پلتفرم ارتباطی مدرن برای گفتگوی خصوصی، گروه‌ها، کانال‌ها، فایل‌ها، پیام صوتی و همکاری منظم است.",
+    "Private chats, groups, and channels in one place.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "اویا — یک‌جا برای همه گفتگوها",
-    description:
-      "گفتگوی خصوصی، گروه‌ها، کانال‌ها، فایل‌ها، پیام صوتی و ارتباط لحظه‌ای در یک پلتفرم مدرن.",
+    title: "Tinkera Chat",
+    description: "Private chats, groups, and channels in one place.",
+    url: "https://chat.tinkera.org",
+    siteName: "Tinkera Chat",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Tinkera Chat - Private chats, groups, and channels",
+      },
+    ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "اویا — یک‌جا برای همه گفتگوها",
-    description:
-      "پیام‌رسانی مدرن برای تیم‌ها، کامیونیتی‌ها و گفتگوهای خصوصی.",
+    title: "Tinkera Chat",
+    description: "Private chats, groups, and channels in one place.",
+    images: ["/og-image.png"],
   },
 };
 

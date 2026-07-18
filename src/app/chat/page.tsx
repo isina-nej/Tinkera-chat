@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const chatAppUrl = process.env.NEXT_PUBLIC_CHAT_APP_URL || "http://localhost:3002/auth/login";
+const chatAppUrl = process.env.NODE_ENV === "production" ? "/app/auth/login" : "http://localhost:3002/app/auth/login";
 
 export default function ChatRedirectPage() {
   const router = useRouter();
