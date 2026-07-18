@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"npm run dev:main\" \"npm run dev:chat\"",
+    "dev:main": "next dev -p 3001",
+    "dev:chat": "cd nextjs-chat && npm run dev -- --hostname 0.0.0.0 --port 3002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -27,6 +29,7 @@
     "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "14.2.5",
+    "concurrently": "^9.0.6"
   }
 }
