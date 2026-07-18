@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+coverage/
+*.log
+.env
+.env.*
+.DS_Store
+nextjs-chat/

@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 224 28% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 28% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 28% 12%;
+    --primary: 238 78% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 22% 95%;
+    --secondary-foreground: 224 28% 12%;
+    --muted: 220 17% 94%;
+    --muted-foreground: 223 12% 43%;
+    --accent: 232 33% 92%;
+    --accent-foreground: 230 28% 20%;
+    --border: 222 20% 88%;
+    --input: 222 20% 88%;
+    --ring: 238 78% 63%;
+    --success: 152 60% 42%;
+    --warning: 39 92% 52%;
+    --destructive: 0 72% 51%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 240 18% 7%;
+    --foreground: 220 20% 96%;
+    --card: 240 15% 10%;
+    --card-foreground: 220 20% 96%;
+    --popover: 240 15% 10%;
+    --popover-foreground: 220 20% 96%;
+    --primary: 238 88% 68%;
+    --primary-foreground: 240 18% 7%;
+    --secondary: 235 12% 16%;
+    --secondary-foreground: 220 20% 96%;
+    --muted: 235 12% 16%;
+    --muted-foreground: 220 12% 70%;
+    --accent: 236 16% 18%;
+    --accent-foreground: 220 20% 96%;
+    --border: 236 15% 20%;
+    --input: 236 15% 20%;
+    --ring: 238 88% 68%;
+    --success: 152 61% 45%;
+    --warning: 39 92% 58%;
+    --destructive: 0 84% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: var(--font-sans), Vazirmatn, Tahoma, sans-serif;
+    font-feature-settings: "cv01", "ss03";
+    background-image: radial-gradient(circle at top, hsl(var(--primary) / 0.12), transparent 30%);
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.18);
+  }
+
+  [dir="rtl"] body {
+    text-align: right;
+  }
+}
+
+@layer utilities {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply text-3xl font-semibold tracking-tight text-foreground md:text-4xl;
+  }
+
+  .section-copy {
+    @apply text-base leading-7 text-muted-foreground md:text-lg;
+  }
+
+  .surface-panel {
+    @apply rounded-[1.5rem] border border-border/70 bg-card/80 backdrop-blur;
+    box-shadow: 0 1px 0 0 hsl(var(--foreground) / 0.03), 0 18px 50px -24px hsl(var(--foreground) / 0.35);
+  }
+
+  .surface-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.35) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.72) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-glow {
+    background: radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, transparent 65%);
+  }
+
+  .typing-dot {
+    animation: typing-bounce 1.2s infinite ease-in-out;
+  }
+
+  .float-soft {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
