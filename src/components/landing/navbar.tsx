@@ -1,69 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Languages, Menu, MessageSquareMore, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/components/language-provider";
+import { useSiteCopy } from "@/components/site-copy";
 import { cn } from "@/lib/utils";
-
-type Dictionary = {
-  navLinks: { name: string; href: string }[];
-  brandTagline: string;
-  signIn: string;
-  getStarted: string;
-  toggleTheme: string;
-  openNavigation: string;
-  closeNavigation: string;
-  languageLabel: string;
-  languageShort: string;
-};
-
-const dictionaries: Record<"fa" | "en", Dictionary> = {
-  fa: {
-    navLinks: [
-      { name: "ویژگی‌ها", href: "#features" },
-      { name: "چت خصوصی", href: "#private-chat" },
-      { name: "گروه‌ها", href: "#groups" },
-      { name: "کانال‌ها", href: "#channels" },
-      { name: "امنیت", href: "#security" },
-      { name: "سوالات پرتکرار", href: "#faq" },
-    ],
-    brandTagline: "پیام‌رسانی برای تیم‌های مدرن",
-    signIn: "ورود",
-    getStarted: "شروع",
-    toggleTheme: "تغییر پوسته",
-    openNavigation: "باز کردن منو",
-    closeNavigation: "بستن منو",
-    languageLabel: "تغییر زبان",
-    languageShort: "FA",
-  },
-  en: {
-    navLinks: [
-      { name: "Features", href: "#features" },
-      { name: "Private Chat", href: "#private-chat" },
-      { name: "Groups", href: "#groups" },
-      { name: "Channels", href: "#channels" },
-      { name: "Security", href: "#security" },
-      { name: "FAQ", href: "#faq" },
-    ],
-    brandTagline: "Messaging for modern teams",
-    signIn: "Sign In",
-    getStarted: "Get Started",
-    toggleTheme: "Toggle theme",
-    openNavigation: "Open navigation",
-    closeNavigation: "Close navigation",
-    languageLabel: "Switch language",
-    languageShort: "EN",
-  },
-};
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
+  const { toggleLanguage } = useLanguage();
+  const copy = useSiteCopy().navbar;
 
   useEffect(() => {
     setMounted(true);
@@ -74,7 +25,6 @@ export function Navbar() {
   }, []);
 
   const isDark = mounted ? resolvedTheme !== "light" : true;
-  const copy = useMemo(() => dictionaries[language], [language]);
 
   return (
     <nav

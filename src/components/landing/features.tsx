@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Bell,
   FileText,
@@ -9,73 +11,37 @@ import {
   UserCircle2,
   Users,
 } from "lucide-react";
+import { useSiteCopy } from "@/components/site-copy";
 
-const features = [
-  {
-    title: "Private messaging",
-    description: "Clean one-to-one conversations with replies, read state, and lightweight controls.",
-    icon: MessageSquare,
-  },
-  {
-    title: "Group chats",
-    description: "Bring teams, friends, and communities into structured shared rooms.",
-    icon: Users,
-  },
-  {
-    title: "Channels",
-    description: "Use public, private, and announcement spaces to organize topics at scale.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Threads",
-    description: "Keep the main timeline calm by moving side discussions into replies.",
-    icon: MessageSquareReply,
-  },
-  {
-    title: "File sharing",
-    description: "Share docs, images, audio, and media without leaving the conversation flow.",
-    icon: FileText,
-  },
-  {
-    title: "Voice messages",
-    description: "Drop a voice clip when text is too slow or too flat for the moment.",
-    icon: Mic,
-  },
-  {
-    title: "Search",
-    description: "Find people, messages, files, and decisions before they disappear into history.",
-    icon: Search,
-  },
-  {
-    title: "Notifications",
-    description: "Stay informed with mention-aware alerts instead of noisy all-or-nothing pings.",
-    icon: Bell,
-  },
-  {
-    title: "Profiles and presence",
-    description: "Show status, role, and availability so people know when and how to reach you.",
-    icon: UserCircle2,
-  },
+const icons = [
+  MessageSquare,
+  Users,
+  ShieldCheck,
+  MessageSquareReply,
+  FileText,
+  Mic,
+  Search,
+  Bell,
+  UserCircle2,
 ];
 
 export function Features() {
+  const copy = useSiteCopy().features;
+
   return (
     <section id="features" className="py-20 sm:py-24">
       <div className="section-shell">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-            Core features
+            {copy.eyebrow}
           </p>
-          <h2 className="section-title mt-3">Everything needed to keep conversations clear and fast.</h2>
-          <p className="section-copy mt-4 max-w-2xl">
-            Ovea keeps private chat, groups, channels, files, and presence in one system so work,
-            community activity, and casual conversation stay connected.
-          </p>
+          <h2 className="section-title mt-3">{copy.title}</h2>
+          <p className="section-copy mt-4 max-w-2xl">{copy.description}</p>
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-12">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
+          {copy.items.map((feature, index) => {
+            const Icon = icons[index];
             const wide = index < 2;
             return (
               <article

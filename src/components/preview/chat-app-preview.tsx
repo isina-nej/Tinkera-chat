@@ -1,11 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import {
-  conversations,
-  groupMessages,
-  privateMessages,
-  sidebarItems,
-  users,
-} from "@/data/mock-chat-data";
+import { useMockChatData, useSiteCopy } from "@/components/site-copy";
 import { PreviewChat } from "./preview-chat";
 import { PreviewConversationList } from "./preview-conversation-list";
 import { PreviewSidebar } from "./preview-sidebar";
@@ -19,17 +15,41 @@ export function ChatAppPreview({
   mode = "dashboard",
   className,
 }: ChatAppPreviewProps) {
+  const previewCopy = useSiteCopy().preview;
+  const { users, sidebarItems, conversations, privateMessages, groupMessages } = useMockChatData();
+
+  const chatLabels = {
+    voiceCall: previewCopy.voiceCall,
+    videoCall: previewCopy.videoCall,
+    details: previewCopy.details,
+    today: previewCopy.today,
+    attachFile: previewCopy.attachFile,
+    emoji: previewCopy.emoji,
+    voiceMessage: previewCopy.voiceMessage,
+    sendMessage: previewCopy.sendMessage,
+    presence: previewCopy.presence,
+  };
+
+  const listLabels = {
+    eyebrow: previewCopy.conversationEyebrow,
+    title: previewCopy.conversationTitle,
+    searchAria: previewCopy.searchConversations,
+    pinned: previewCopy.pinned,
+    directMessage: previewCopy.directMessage,
+  };
+
   if (mode === "private") {
     return (
       <div className={cn("surface-panel overflow-hidden", className)}>
         <PreviewChat
           title={users.sarah.name}
-          subtitle="Design lead · Online"
+          subtitle={previewCopy.privateSubtitle}
           avatar={users.sarah.avatar}
           presence={users.sarah.presence}
           messages={privateMessages}
-          typingLabel="Sarah is typing"
-          composerPlaceholder="Message Sarah about launch notes..."
+          typingLabel={previewCopy.typingSarah}
+          composerPlaceholder={previewCopy.privateComposer}
+          labels={chatLabels}
         />
       </div>
     );
@@ -39,15 +59,16 @@ export function ChatAppPreview({
     return (
       <div className={cn("surface-panel overflow-hidden", className)}>
         <PreviewChat
-          title="Product launch"
-          subtitle="12 members · 7 online now"
+          title={previewCopy.groupTitle}
+          subtitle={previewCopy.groupSubtitle}
           avatar="PL"
           presence="focus"
           messages={groupMessages}
           groupMode
-          pinnedLabel="Pinned: final rollout checklist and escalation contacts"
-          typingLabel="Nina is writing in thread"
-          composerPlaceholder="Reply to the group or start a thread..."
+          pinnedLabel={previewCopy.groupPinned}
+          typingLabel={previewCopy.groupTyping}
+          composerPlaceholder={previewCopy.groupComposer}
+          labels={chatLabels}
         />
       </div>
     );
@@ -59,21 +80,22 @@ export function ChatAppPreview({
         <div className="overflow-hidden rounded-[1.6rem] border border-border/70 bg-background">
           <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Ovea mobile</p>
-              <h3 className="text-sm font-semibold">Private chat</h3>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{previewCopy.mobileEyebrow}</p>
+              <h3 className="text-sm font-semibold">{previewCopy.mobileTitle}</h3>
             </div>
             <div className="rounded-full border border-border/70 px-2 py-1 text-[10px] text-muted-foreground">
-              Online
+              {previewCopy.mobileStatus}
             </div>
           </div>
           <PreviewChat
             title={users.sarah.name}
-            subtitle="Online"
+            subtitle={previewCopy.mobileStatus}
             avatar={users.sarah.avatar}
             presence={users.sarah.presence}
             messages={privateMessages.slice(1)}
-            composerPlaceholder="Write a message"
+            composerPlaceholder={previewCopy.mobileComposer}
             compact
+            labels={chatLabels}
           />
         </div>
       </div>
@@ -87,16 +109,17 @@ export function ChatAppPreview({
           <PreviewSidebar items={sidebarItems} />
         </div>
         <div className="hidden lg:block">
-          <PreviewConversationList conversations={conversations} />
+          <PreviewConversationList conversations={conversations} labels={listLabels} />
         </div>
         <PreviewChat
           title={users.sarah.name}
-          subtitle="Design lead · Online"
+          subtitle={previewCopy.dashboardSubtitle}
           avatar={users.sarah.avatar}
           presence={users.sarah.presence}
           messages={privateMessages}
-          typingLabel="Sarah is typing"
-          composerPlaceholder="Write a message, drop a file, or record a voice note..."
+          typingLabel={previewCopy.typingSarah}
+          composerPlaceholder={previewCopy.composerMain}
+          labels={chatLabels}
         />
       </div>
     </div>

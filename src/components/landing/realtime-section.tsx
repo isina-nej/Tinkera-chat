@@ -1,40 +1,26 @@
-import { BellRing, CheckCheck, CircleDotDashed, RadioTower, Users } from "lucide-react";
+"use client";
 
-const realtimeSignals = [
-  {
-    title: "Typing indicators",
-    description: "Show active intent without turning the interface into motion-heavy noise.",
-    icon: CircleDotDashed,
-  },
-  {
-    title: "Delivery and read state",
-    description: "Keep simple cues for sent, delivered, and read moments where they matter.",
-    icon: CheckCheck,
-  },
-  {
-    title: "Live notifications",
-    description: "Surface mentions, replies, and updates quickly without forcing constant checking.",
-    icon: BellRing,
-  },
-];
+import { BellRing, CheckCheck, CircleDotDashed, RadioTower, Users } from "lucide-react";
+import { useSiteCopy } from "@/components/site-copy";
+
+const signalIcons = [CircleDotDashed, CheckCheck, BellRing];
 
 export function RealtimeSection() {
+  const copy = useSiteCopy().realtime;
+
   return (
     <section className="py-20 sm:py-24">
       <div className="section-shell">
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-              Real-time experience
+              {copy.eyebrow}
             </p>
-            <h2 className="section-title mt-3">Fast enough to feel live. Calm enough to stay readable.</h2>
-            <p className="section-copy mt-4">
-              The best real-time products show motion only when it helps understanding. Ovea keeps typing,
-              presence, and delivery cues visible without overwhelming the timeline.
-            </p>
+            <h2 className="section-title mt-3">{copy.title}</h2>
+            <p className="section-copy mt-4">{copy.description}</p>
             <div className="mt-8 space-y-3">
-              {realtimeSignals.map((signal) => {
-                const Icon = signal.icon;
+              {copy.signals.map((signal, index) => {
+                const Icon = signalIcons[index];
                 return (
                   <div key={signal.title} className="surface-panel flex items-start gap-4 p-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -58,13 +44,13 @@ export function RealtimeSection() {
                     <RadioTower className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Live room status</p>
-                    <p className="text-xs text-muted-foreground">Right now</p>
+                    <p className="text-sm font-semibold text-foreground">{copy.liveStatusTitle}</p>
+                    <p className="text-xs text-muted-foreground">{copy.liveStatusSubtitle}</p>
                   </div>
                 </div>
                 <div className="mt-5 rounded-2xl border border-border/70 bg-card/90 p-4 text-sm text-muted-foreground">
                   <div className="flex items-center justify-between">
-                    <span>Maya is typing</span>
+                    <span>{copy.mayaTyping}</span>
                     <span className="inline-flex gap-1">
                       <span className="typing-dot h-1.5 w-1.5 rounded-full bg-primary" />
                       <span className="typing-dot h-1.5 w-1.5 rounded-full bg-primary" style={{ animationDelay: "0.15s" }} />
@@ -72,7 +58,7 @@ export function RealtimeSection() {
                     </span>
                   </div>
                   <div className="mt-4 flex items-center justify-between">
-                    <span>Last message delivered</span>
+                    <span>{copy.lastDelivered}</span>
                     <CheckCheck className="h-4 w-4 text-primary" />
                   </div>
                 </div>
@@ -83,21 +69,21 @@ export function RealtimeSection() {
                     <Users className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Presence overview</p>
-                    <p className="text-xs text-muted-foreground">Launch workspace</p>
+                    <p className="text-sm font-semibold text-foreground">{copy.presenceTitle}</p>
+                    <p className="text-xs text-muted-foreground">{copy.presenceSubtitle}</p>
                   </div>
                 </div>
                 <div className="mt-5 space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/90 px-4 py-3">
-                    <span>Online now</span>
+                    <span>{copy.onlineNow}</span>
                     <span className="font-medium text-foreground">12</span>
                   </div>
                   <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/90 px-4 py-3">
-                    <span>Unread mentions</span>
+                    <span>{copy.unreadMentions}</span>
                     <span className="font-medium text-foreground">3</span>
                   </div>
                   <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/90 px-4 py-3">
-                    <span>Active threads</span>
+                    <span>{copy.activeThreads}</span>
                     <span className="font-medium text-foreground">8</span>
                   </div>
                 </div>

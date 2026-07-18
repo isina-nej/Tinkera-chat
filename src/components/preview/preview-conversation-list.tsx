@@ -5,6 +5,13 @@ import { ConversationItem } from "@/data/mock-chat-data";
 type PreviewConversationListProps = {
   conversations: ConversationItem[];
   compact?: boolean;
+  labels: {
+    eyebrow: string;
+    title: string;
+    searchAria: string;
+    pinned: string;
+    directMessage: string;
+  };
 };
 
 function presenceColor(presence?: string) {
@@ -17,6 +24,7 @@ function presenceColor(presence?: string) {
 export function PreviewConversationList({
   conversations,
   compact = false,
+  labels,
 }: PreviewConversationListProps) {
   return (
     <div
@@ -29,13 +37,13 @@ export function PreviewConversationList({
         <div className="flex items-center justify-between gap-3">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-              Inbox
+              {labels.eyebrow}
             </p>
-            <h3 className="mt-1 text-lg font-semibold text-foreground">All conversations</h3>
+            <h3 className="mt-1 text-lg font-semibold text-foreground">{labels.title}</h3>
           </div>
           <button
             type="button"
-            aria-label="Search conversations"
+            aria-label={labels.searchAria}
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/70 bg-background/80 text-muted-foreground transition-colors hover:text-foreground"
           >
             <Search className="h-4 w-4" />
@@ -80,7 +88,7 @@ export function PreviewConversationList({
                 </p>
                 <div className="mt-2 flex items-center justify-between gap-2">
                   <span className="text-[11px] text-muted-foreground">
-                    {conversation.members ?? (conversation.pinned ? "Pinned" : "Direct message")}
+                    {conversation.members ?? (conversation.pinned ? labels.pinned : labels.directMessage)}
                   </span>
                   {conversation.unread > 0 ? (
                     <span className="inline-flex min-w-[1.35rem] items-center justify-center rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground">

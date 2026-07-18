@@ -15,13 +15,32 @@ type PreviewChatProps = {
   typingLabel?: string;
   groupMode?: boolean;
   compact?: boolean;
+  labels: {
+    voiceCall: string;
+    videoCall: string;
+    details: string;
+    today: string;
+    attachFile: string;
+    emoji: string;
+    voiceMessage: string;
+    sendMessage: string;
+    presence: {
+      online: string;
+      focus: string;
+      away: string;
+      offline: string;
+    };
+  };
 };
 
-function presenceLabel(presence?: Presence) {
-  if (presence === "online") return { dot: "bg-success", text: "Online" };
-  if (presence === "focus") return { dot: "bg-primary", text: "Focus mode" };
-  if (presence === "away") return { dot: "bg-warning", text: "Away" };
-  return { dot: "bg-muted-foreground/40", text: "Offline" };
+function presenceLabel(
+  presence: Presence | undefined,
+  labels: PreviewChatProps["labels"]["presence"]
+) {
+  if (presence === "online") return { dot: "bg-success", text: labels.online };
+  if (presence === "focus") return { dot: "bg-primary", text: labels.focus };
+  if (presence === "away") return { dot: "bg-warning", text: labels.away };
+  return { dot: "bg-muted-foreground/40", text: labels.offline };
 }
 
 export function PreviewChat({
@@ -35,9 +54,10 @@ export function PreviewChat({
   typingLabel,
   groupMode = false,
   compact = false,
+  labels,
 }: PreviewChatProps) {
   const current = messages[0]?.senderId;
-  const presenceState = presenceLabel(presence);
+  const presenceState = presenceLabel(presence, labels.presence);
 
   return (
     <section className="flex min-h-0 flex-1 flex-col bg-card/20">
@@ -53,13 +73,13 @@ export function PreviewChat({
           </div>
         </div>
         <div className="hidden items-center gap-2 text-muted-foreground sm:flex">
-          <button type="button" aria-label="Voice call" className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
+          <button type="button" aria-label={labels.voiceCall} className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
             <Phone className="h-4 w-4" />
           </button>
-          <button type="button" aria-label="Video call" className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
+          <button type="button" aria-label={labels.videoCall} className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
             <Video className="h-4 w-4" />
           </button>
-          <button type="button" aria-label="Conversation details" className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
+          <button type="button" aria-label={labels.details} className="flex h-9 w-9 items-center justify-center rounded-xl border border-transparent transition-colors hover:border-border/70 hover:bg-muted/60 hover:text-foreground">
             <Info className="h-4 w-4" />
           </button>
         </div>
@@ -74,7 +94,7 @@ export function PreviewChat({
       <div className={cn("flex-1 space-y-4 overflow-y-auto px-4 py-4 sm:px-5", compact ? "min-h-[300px]" : "min-h-[420px]")}>
         <div className="flex justify-center">
           <span className="rounded-full border border-border/70 bg-card px-3 py-1 text-[11px] text-muted-foreground">
-            Today
+            {labels.today}
           </span>
         </div>
         {messages.map((message) => (
@@ -102,7 +122,15 @@ export function PreviewChat({
         ) : null}
       </div>
 
-      <PreviewComposer placeholder={composerPlaceholder} />
+      <PreviewComposer
+        placeholder={composerPlaceholder}
+        labels={{
+          attachFile: labels.attachFile,
+          emoji: labels.emoji,
+          voiceMessage: labels.voiceMessage,
+          sendMessage: labels.sendMessage,
+        }}
+      />
     </section>
   );
 }
