@@ -7,7 +7,7 @@
     "dev:main": "next dev -p 3001",
     "dev:chat": "cd nextjs-chat && npm run dev -- --hostname 0.0.0.0 --port 3002",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "next lint"
   },
   "dependencies": {
