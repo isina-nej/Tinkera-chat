@@ -74,11 +74,11 @@ export function Navbar() {
           >
             {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
           </button>
-          <Link href="/chat" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/app/auth/login" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             {copy.signIn}
           </Link>
           <Link
-            href="/chat"
+            href="/app/auth/login"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02]"
           >
             {copy.getStarted}
@@ -131,14 +131,14 @@ export function Navbar() {
             </div>
             <div className="mt-4 grid gap-2 border-t border-border/70 pt-4 sm:grid-cols-2">
               <Link
-                href="/chat"
+                href="/app/auth/login"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="rounded-2xl border border-border/70 px-4 py-3 text-center text-sm font-medium text-foreground"
               >
                 {copy.signIn}
               </Link>
               <Link
-                href="/chat"
+                href="/app/auth/login"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="rounded-2xl bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground"
               >

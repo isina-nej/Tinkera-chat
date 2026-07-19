@@ -31,14 +31,14 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="/chat"
+              href="/app/auth/register"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.02]"
             >
               {copy.primaryCta}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/chat"
+              href="/app/auth/register"
               className="inline-flex h-12 items-center justify-center rounded-full border border-border/70 bg-card/70 px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted"
             >
               {copy.secondaryCta}

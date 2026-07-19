@@ -22,7 +22,7 @@ export function FinalCta() {
             <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">{copy.description}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
-                href="/chat"
+                href="/app/auth/register"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.02]"
               >
                 {copy.primaryCta}
