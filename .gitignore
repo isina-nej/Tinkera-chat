@@ -6,4 +6,4 @@ coverage/
 .env
 .env.*
 .DS_Store
-nextjs-chat/
+# nextjs-chat/  (unignored - API routes and app code need to be tracked for deployment)

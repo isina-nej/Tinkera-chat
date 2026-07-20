@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Light theme - synced with landing */
+  --background: 220 33% 98%;
+  --foreground: 224 28% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 28% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 28% 12%;
+  --primary: 238 78% 63%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 225 22% 95%;
+  --secondary-foreground: 224 28% 12%;
+  --muted: 220 17% 94%;
+  --muted-foreground: 223 12% 43%;
+  --accent: 232 33% 92%;
+  --accent-foreground: 230 28% 20%;
+  --border: 222 20% 88%;
+  --input: 222 20% 88%;
+  --ring: 238 78% 63%;
+  --success: 152 60% 42%;
+  --warning: 39 92% 52%;
+  --destructive: 0 72% 51%;
+  --radius: 1rem;
+}
+
+.dark {
+  /* Dark theme - synced with landing */
+  --background: 240 18% 7%;
+  --foreground: 220 20% 96%;
+  --card: 240 15% 10%;
+  --card-foreground: 220 20% 96%;
+  --popover: 240 15% 10%;
+  --popover-foreground: 220 20% 96%;
+  --primary: 238 88% 68%;
+  --primary-foreground: 240 18% 7%;
+  --secondary: 235 12% 16%;
+  --secondary-foreground: 220 20% 96%;
+  --muted: 235 12% 16%;
+  --muted-foreground: 220 12% 70%;
+  --accent: 236 16% 18%;
+  --accent-foreground: 220 20% 96%;
+  --border: 236 15% 20%;
+  --input: 236 15% 20%;
+  --ring: 238 88% 68%;
+  --success: 152 61% 45%;
+  --warning: 39 92% 58%;
+  --destructive: 0 84% 65%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-destructive: hsl(var(--destructive));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  font-family: var(--font-geist-sans), Vazirmatn, Tahoma, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Chat specific styles - synced with landing design system */
+.chat-container {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.message-bubble {
+  max-width: 75%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.message-bubble.sent {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.message-bubble.received {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+.message-input {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+}
+
+.message-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.send-button {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.send-button:hover:not(:disabled) {
+  background: hsl(var(--primary) / 0.9);
+  transform: translateY(-1px);
+}
+
+.send-button:disabled {
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  cursor: not-allowed;
+}
+
+.chat-header {
+  background: hsl(var(--card));
+  border-bottom: 1px solid hsl(var(--border));
+  padding: 1rem 1.5rem;
+}
+
+.message-actions {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.message-bubble:hover .message-actions {
+  opacity: 1;
+}
+
+.empty-state {
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+/* Scrollbar styling */
+.messages-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.messages-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+.messages-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
