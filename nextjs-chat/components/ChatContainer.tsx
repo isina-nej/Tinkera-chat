@@ -64,7 +64,7 @@ export default function ChatContainer({ token, userEmail, chatId, onChatDeleted 
   const fetchChat = async () => {
     try {
       const response = await fetch(`/app/api/chats/${chatId}`, {
-        headers: { Authorization: `Bearer ${token}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {
@@ -79,7 +79,7 @@ export default function ChatContainer({ token, userEmail, chatId, onChatDeleted 
   const fetchMessages = async () => {
     try {
       const response = await fetch(`/app/api/chats/${chatId}/messages`, {
-        headers: { Authorization: `Bearer ${token}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {
@@ -144,7 +144,7 @@ export default function ChatContainer({ token, userEmail, chatId, onChatDeleted 
     try {
       const response = await fetch(`/app/api/messages/${messageId}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {
@@ -201,7 +201,7 @@ export default function ChatContainer({ token, userEmail, chatId, onChatDeleted 
     try {
       const response = await fetch(`/app/api/chats/${chatId}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {

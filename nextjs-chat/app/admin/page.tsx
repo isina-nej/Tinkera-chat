@@ -43,10 +43,10 @@ export default function AdminPage() {
       try {
         const [usersRes, statsRes] = await Promise.all([
           fetch('/api/admin/users', {
-            headers: { Authorization: `Bearer ${token}`,
+            headers: { Authorization: `Bearer ${token}` },
           }),
           fetch('/api/admin/stats', {
-            headers: { Authorization: `Bearer ${token}`,
+            headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
 

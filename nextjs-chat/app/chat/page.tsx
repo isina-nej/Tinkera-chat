@@ -53,7 +53,7 @@ export default function ChatPage() {
 
     try {
       const response = await fetch('/app/api/chats', {
-        headers: { Authorization: `Bearer ${token}`
+        headers: { Authorization: `Bearer ${token}` }
       });
 
       if (response.ok) {
